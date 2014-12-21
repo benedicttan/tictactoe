@@ -35,9 +35,14 @@
 
   <% val=1 if session[:user].email == Game.find(session[:game_id]).users[0].email %>
   <% val=2 if session[:user].email == Game.find(session[:game_id]).users[1].email %>
+<<<<<<< HEAD
   <input type=hidden id=player_id value=<%=val%> />
   <input type=hidden id=my_turn value=<%= UserGame.where(game_id: session[:game_id], user_id: session[:user].id)[0].my_turn %> />
 
+=======
+  <input type=hidden id=player_id value=<%=val%>>
+  <input type=hidden id=my_turn value=<%= session[:user_game].my_turn %>>
+>>>>>>> 4de01cb10cbd209f33d547c0a9a7eaabdc2e12b7
  </div>
 
 
@@ -48,11 +53,15 @@
 <script>
 
   $(document).ready(function() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4de01cb10cbd209f33d547c0a9a7eaabdc2e12b7
     var disabled_interval;
 
     if ($("#my_turn").val() == "false") {
       $("#cover").css("visibility","visible");
+<<<<<<< HEAD
       disabled_interval = setInterval(function(){
         $.ajax({
           type: "GET",
@@ -66,6 +75,22 @@
             }
           }); // $.ajax({
         }, 1000); // disabled_interval = setInterval(function(){
+=======
+        disabled_interval = setInterval(function(){
+          $.ajax({
+            type: "GET",
+            url: "/check_turn",
+            data: {  }
+          })
+            .done(function( msg ) {
+              if ( msg != "") {
+                // alert(msg);
+                clearInterval(disabled_interval);
+                $(body).html(msg);
+              }
+            }); // $.ajax({
+          }, 1000); // disabled_interval = setInterval(function(){
+>>>>>>> 4de01cb10cbd209f33d547c0a9a7eaabdc2e12b7
     } else {
       $("#cover").css("visibility","hidden");
     }
@@ -77,11 +102,17 @@
       image_src = "drumstick";
     }
 
+<<<<<<< HEAD
 
     $(".col").on("click",function(e) {
       this.innerHTML = "<img src='/images/" + image_src + ".png' WIDTH=65>";
       $("#cover").css("visibility","visible");
       $("#my_turn").attr("value","false");
+=======
+    $(".col").on("click",function(e) {
+      this.innerHTML = "<img src='/images/" + image_src + ".png' WIDTH=65>";
+      $("#cover").css("visibility","visible");
+>>>>>>> 4de01cb10cbd209f33d547c0a9a7eaabdc2e12b7
       $(this).parent().parent().children().addClass("inactive");
 
       $.ajax({
@@ -99,8 +130,14 @@
           })
             .done(function( msg ) {
               if ( msg != "") {
+<<<<<<< HEAD
                 clearInterval(disabled_interval);
                 $("body").html(msg);
+=======
+                // alert(msg);
+                clearInterval(disabled_interval);
+                $(body).html(msg);
+>>>>>>> 4de01cb10cbd209f33d547c0a9a7eaabdc2e12b7
               }
             }); // $.ajax({
           }, 1000) // disabled_interval = setInterval(function(){
