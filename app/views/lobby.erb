@@ -1,0 +1,21 @@
+<h2>Please wait while we wait for another player</h2>
+<input type=hidden id="game_id" value=<%= session[:game_id] %>>
+<script>
+
+  $(document).ready(function() {
+    check_interval = setInterval(function(){
+      $.ajax({
+        type: "GET",
+        url: "/check_status/" + $("#game_id").val(),
+        data: {  }
+      })
+        .done(function( msg ) {
+          if ( msg == "true") {
+            clearInterval(check_interval);
+            window.location.assign("/game")
+          }
+        });
+    }, 1000);
+  });
+
+</script>
