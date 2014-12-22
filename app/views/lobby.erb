@@ -3,11 +3,7 @@
 <script>
 
   $(document).ready(function() {
-<<<<<<< HEAD
     check_interval = setInterval(function(){
-=======
-    setInterval(function(){
->>>>>>> 4de01cb10cbd209f33d547c0a9a7eaabdc2e12b7
       $.ajax({
         type: "GET",
         url: "/check_status/" + $("#game_id").val(),
@@ -15,10 +11,7 @@
       })
         .done(function( msg ) {
           if ( msg == "true") {
-<<<<<<< HEAD
             clearInterval(check_interval);
-=======
->>>>>>> 4de01cb10cbd209f33d547c0a9a7eaabdc2e12b7
             window.location.assign("/game")
           }
         });
